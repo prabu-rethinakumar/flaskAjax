@@ -2,7 +2,6 @@ from flask import *
 from werkzeug.utils import *
 import os
 import json
-from backup import Backup
 app = Flask(__name__)
 
 
@@ -21,7 +20,7 @@ def format_match(filename):
 def load_page():
     return render_template("main.html")
 
-
+#Define ajax a sseperate URI
 @app.route('/ajax', methods=["GET"])
 def return_stat():
     global globMsg
@@ -32,21 +31,21 @@ def return_stat():
     )
     return response
 
-
+#Sample upload functionality
 @app.route('/upload', methods=["POST"])
 def check_file():
     file = request.files['upld']
-    realloc = request.form['realloc']
+    realloc = request.form['restart']
     if format_match(file.filename) and file:
         sec_file = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_PATH'], sec_file))
         global globMsg
         globMsg = "Validated File"
-        return redirect(url_for('get_file', filename=sec_file, realloc=realloc))
+        return redirect(url_for('get_file', filename=sec_file, restart=restart))
     else:
         return False
 
-
+#redirect page for Upload activities - write your own logic here
 @app.route('/upload/<restart>/<filename>')
 def get_file(restart, filename):
     x = YourLogic()
@@ -56,8 +55,9 @@ def get_file(restart, filename):
     count = 0
 	#Step 1: Do your logic
     globMsg = "Step#1 completed successfully"
-    if table_name is "":
-        globMsg = "Step#1 failed: Terminating"
+    #if result of Step#1 is success - return step1_result = True
+    if step1_result is "":
+        globMsg = "Step#2 failed: Terminating"
         return json.dumps({"message": globMsg})
     globMsg = "Step#2 in progress"
     for line in f:
@@ -70,7 +70,7 @@ def get_file(restart, filename):
         if result:
             count += 1
     f.close()
-    globMsg = "Step#2 successfully"
+    globMsg = "Step#2 successfully completed"
     if count == 0:
         globMsg = "Overall failure - Terminated Processing"
         return json.dumps({"message": globMsg})
