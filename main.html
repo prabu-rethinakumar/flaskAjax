@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Sample UI </title>
+    <script src="{{ url_for('static', filename="pace.js")}}"> </script>
+    <link href="{{  url_for('static', filename="pace.css") }}" rel="stylesheet" />
+    </head>
+
+<body>
+<script type="text/javascript" src="{{url_for('static', filename='ajax_loader.js')}}"> </script>
+
+<div>
+    <h2 style="color:black;text-align:center"> SAMPLE Block </h2>
+</div>
+
+<div style="color:black;text-align:center">
+    <form action="upload" onsubmit="get_progress()" method="post" enctype="multipart/form-data">
+    <h3>Select type</h3>
+    <input type="radio" id="A" name="type" value="DO"> DO
+    <input type="radio" id="B" name="type" value="DONT"> DONT
+    <br>
+    <h3> Select Options</h3>
+    <input type="radio" name="restart" value="YES"> YES
+    <input type="radio" name="restart" value="NO"> NO
+    <br>
+    <h4>Choose upload file</h4>
+    <input type="file" name="upld" accept="text/csv">
+    <input type="submit" value="Submit">
+    </form>
+    <h3 id="status"> </h3> <h3 id="statusbar"> </h3>
+    <table align="center">
+        <tr>
+            <th>Process</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>PROCESS1</td>
+            <td id="STEP-1"></td>
+        </tr>
+        <tr>
+            <td>PROCESS2</td>
+            <td id="STEP-2"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
