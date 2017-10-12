@@ -5,17 +5,17 @@
 Whole idea behind this is 1) create a seperate URI in Python/Flask application for tracking the progress of workload 2) call the URI in your html page using Ajax at specificed intervals of time (say 200ms) to provide status to User
 
 
-What is different ?
+### What is different ?
 
 If you dont want to go for jQuery or equivalent just to provide a simple ajax response you can go with this approach 
 
 
-Use case?
+### Usage
 
 Suitable for time consuming UIs which do multiple tasks at once(e.g an Upload UI with multiple steps or running batch mode workload) 
 
 
-Requirements:
+### Requirements:
 
 Python
 
@@ -28,5 +28,5 @@ Pace.js(optional)
 Set your Flask application to operate in Multi-thread mode 
 
 
-Pace.js:
+### Pace.js:
 It provides nice visualization when the page gets loaded or redirected . Refer http://github.hubspot.com/pace/docs/welcome/ for more info on Pace.js
