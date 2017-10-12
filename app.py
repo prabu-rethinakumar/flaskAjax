@@ -9,6 +9,8 @@ app = Flask(__name__)
 app.config['UPLOAD_PATH'] = 'C:\\Users\abcd\Desktop\Python projects\\files'
 
 global globMsg
+#avoid using the global variable here - it would have its own negative effects in a multithreaded application. 
+#Rather use local variables and to constantly push status of your application to the UI
 
 def format_match(filename):
     if '.' in filename:
